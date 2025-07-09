@@ -1,91 +1,127 @@
-# 🏋️ TrainiAI – Personalized Plan Generator
+# 🏋️‍♂️ TrainiAI – Personalized Plan Generator
 
-**TrainiAI** is an intelligent voice-powered platform that helps users build personalized workout and diet plans through natural conversations. No forms. No fluff. Just a friendly AI that understands your needs and delivers a plan tailored to your lifestyle and goals.
+**TrainiAI** is a smart, voice-based platform that helps users generate fully personalized fitness and diet plans — just by having a short conversation. No forms, no typing. Just talk to your AI coach and receive a custom plan tailored to your lifestyle, fitness level, and goals.
 
 ---
 
 ## 🌟 What It Does
 
-- 🎙️ Users speak naturally to an AI coach powered by VAPI
-- 🧠 The assistant asks targeted fitness-related questions
-- 📝 Structured data from the conversation is analyzed
-- 💡 Gemini AI processes the data to generate a detailed plan
-- 📦 The final plan is saved to the database and shown in the user’s dashboard
-- ✅ All of this happens **seamlessly** after one voice conversation
+- 🎙️ Natural voice-based onboarding using **VAPI**
+- 🧠 Structured call summary analyzed with **Gemini AI**
+- 📋 Automatically generates weekly workout + diet plans
+- 🔐 Secure user accounts and data using **Clerk**
+- 📨 Webhook support for **real-time user creation** via Clerk
+- 📦 Plans are saved and linked to the user using **Prisma + PostgreSQL**
+- 🖼️ Responsive, clean UI built with **Tailwind CSS + shadcn/ui**
 
 ---
 
-## 🧠 How It Works (Simplified Flow)
+## 🧠 How It Works
 
-1. **User speaks** to the AI assistant via VAPI
-2. **Structured conversation data** is returned after the call
-3. **Gemini AI** takes over, analyzing user goals, injuries, preferences, etc.
-4. A **personalized fitness plan** is created — both workout & diet
-5. Plan is stored and **immediately visible in the user’s dashboard**
+1. User starts a voice session with the AI assistant
+2. The assistant asks fitness-related questions (goals, routine, injuries, diet)
+3. After the call ends, structured data is retrieved
+4. The data is analyzed using Gemini to create a personalized fitness + diet plan
+5. The plan is saved in the database and linked to the logged-in user
+6. User is redirected to their profile to view their plan
 
-This gives the user a fully customized plan without typing a single word.
+Additionally, when a new user signs up via Clerk, a **webhook is triggered** to create a corresponding user entry in your database.
 
 ---
 
-## ✨ Key Highlights
+## 🧩 Tech Stack
 
-- **Fully voice-driven onboarding** — natural, human-like conversations
-- **AI-generated weekly workout & diet plans** tailored to each user
-- **User-specific adaptations**: injuries, restrictions, goals, and experience level
-- **Clean and responsive UI**, built to feel personal and intuitive
-- **No webhooks required** — conversation summary handled post-call
-- **Secure user accounts and private plans** via Clerk authentication
+| Category        | Technology                |
+| --------------- | ------------------------- |
+| Frontend        | Next.js (App Router)      |
+| Styling         | Tailwind CSS, shadcn/ui   |
+| Authentication  | Clerk.dev                 |
+| ORM             | Prisma                    |
+| Database        | PostgreSQL                |
+| Voice Assistant | VAPI                      |
+| AI Integration  | Gemini (Google AI)        |
+| Dev Tools       | Ngrok (for local testing) |
+| Hosting         | Localhost / Vercel-ready  |
+
+---
+
+## 📡 Webhook Integration (Clerk)
+
+This project uses Clerk’s **webhook support** to automatically add new users to the database when they sign up.
+
+When a `user.created` event is received:
+
+- The webhook verifies the event using a signing secret
+- Extracts `id`, `email`, `name`, etc.
+- Creates a new user record in your Prisma database
+
+This ensures every Clerk user has a matching DB entry.
+
+---
+
+## 📁 Environment Variables Setup
+
+Create a `.env.local` file and define the following variables:
+
+### 🔐 Authentication
+
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+- `CLERK_SECRET_KEY`
+- `NEXT_PUBLIC_CLERK_SIGN_IN_URL`
+- `NEXT_PUBLIC_CLERK_SIGN_UP_URL`
+- `NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL`
+- `NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL`
+
+### 💾 Database
+
+- `NEXT_PUBLIC_DATABASE_URL`
+
+### 🌍 Application Settings
+
+- `NEXT_PUBLIC_WEBSITE_URL`
+- `SIGNING_SECRET`
+
+### 🧠 Gemini AI
+
+- `NEXT_PUBLIC_GEMINI_API_KEY`
+
+### 🗣️ VAPI (Voice Assistant)
+
+- `NEXT_PUBLIC_VAPI_PRIVATE_KEY`
+- `NEXT_PUBLIC_VAPI_PUBLIC_KEY`
+- `NEXT_PUBLIC_VAPI_WORKFLOW_ID`
+- `NEXT_PUBLIC_VAPI_ASSISTANT_ID`
+
+> ⚠️ Make sure not to expose these keys publicly. Keep `.env.local` secure and excluded from version control.
 
 ---
 
 ## 🎨 User Experience
 
-> "You don't fill out a form — you just talk to your AI coach."
-
-- On first contact, users are greeted by a warm, motivating AI voice
-- The assistant asks about their fitness goals, routine, injuries, diet, etc.
-- In under a minute, users finish the call
-- A few seconds later, their **custom plan appears in the dashboard**
-- No login stress, no configuration — just **speak and see results**
+- Users sign in with Clerk
+- They talk to a friendly AI assistant about their fitness goals
+- After the call ends, within seconds, a fully structured plan is ready
+- The plan includes a workout schedule and diet suggestions
+- It’s personalized, saved securely, and easy to view in the dashboard
 
 ---
 
-## 👤 Who Is This For?
+## 🔒 Security
 
-- People who want **simple, no-pressure fitness guidance**
-- Beginners looking for **AI-generated, goal-based plans**
-- Developers exploring how to **connect voice assistants to AI planning**
-- Startups aiming to build **AI-first wellness experiences**
-
----
-
-## 🔒 Privacy & Security
-
-- All users are authenticated via **Clerk.dev**
-- Plans are only visible to the signed-in user who created them
-- No data is stored or shared without explicit consent
+- All routes are protected with Clerk's `currentUser()`
+- Webhooks are verified using a shared secret
+- All user data is isolated and securely stored
 
 ---
 
-## 🤝 Credits
-
-- **AI Voice Assistant**: [VAPI.ai](https://www.vapi.ai/)
-- **AI Plan Generation**: Gemini (Google)
-- **Authentication**: Clerk.dev
-- **UI Framework**: Tailwind CSS + shadcn/ui
-- **Backend**: Next.js (App Router)
-- **Database**: PostgreSQL + Prisma ORM
-
----
-
-## 🧑‍💻 Author
+## 👨‍💻 Author
 
 **Garvit Khulbe**  
-Fitness tech enthusiast • Full Stack Developer  
-[LinkedIn](https://linkedin.com/in/garvitkhulbe)
+AI & Web Developer | Voice Tech Enthusiast  
+[LinkedIn](https://linkedin.com/in/garvitkhulbe) · [GitHub](https://github.com/garvitkhulbe)
 
 ---
 
 ## 📄 License
 
-This project is open source under the MIT License.
+This project is open source and available under the **MIT License**.
