@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NEXT_PUBLIC_DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  plans     Plan[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Plan {
+  id                     Int           @id @default(autoincrement())
+  userId                 Int
+  user                   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title                  String
+  goal                   String
+  overview               String
+  workout_days           String
+  injuries               String
+  dietetary_restrictions String
+  WorkoutPlan            WorkoutPlan[]
+  DietPlan               DietPlan[]
+  createdAt              DateTime      @default(now())
+}
+
+model WorkoutPlan {
+  id        Int        @id @default(autoincrement())
+  planId    Int
+  Plan      Plan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  Exercises Exercise[]
+  day       String
+  Day       Day        @relation(fields: [day], references: [name])
+  title     String
+  createdAt DateTime   @default(now())
+}
+
+model Exercise {
+  id            Int         @id @default(autoincrement())
+  title         String
+  sets          String
+  reps          String
+  day           String
+  Day           Day         @relation(fields: [day], references: [name])
+  workoutPlanId Int
+  WorkoutPlan   WorkoutPlan @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+}
+
+model Day {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  Exercises   Exercise[]
+  WorkoutPlan WorkoutPlan[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model DietPlan {
+  id        Int      @id @default(autoincrement())
+  planId    Int
+  Plan      Plan     @relation(fields: [planId], references: [id], onDelete: Cascade)
+  mealTime  String
+  MealTime  MealTime @relation(fields: [mealTime], references: [name])
+  meal      String[]
+  createdAt DateTime @default(now())
+}
+
+model MealTime {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  DietPlan  DietPlan[]
+  createdAt DateTime   @default(now())
+}
+
+// enum Days {
+// Monday
+// Tuesday
+// Wednesday
+// Thursday
+// Friday
+// Saturday
+// Sunday
+// }
+// 
