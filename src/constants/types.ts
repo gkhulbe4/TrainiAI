@@ -35,15 +35,13 @@ export type userData = {
 };
 
 export type PlanType = {
-  plan: {
-    id: number;
-    createdAt: Date;
-    userId: number;
-    title: string;
-    goal: string;
-    overview: string;
-    workout_days: string;
-    injuries: string;
-    dietetary_restrictions: string;
-  };
+  id: number;
+  createdAt: Date;
+  userId: number;
+  title: string;
+  goal: string;
+  overview: string;
+  workout_days: string;
+  injuries: string;
+  dietetary_restrictions: string;
 };

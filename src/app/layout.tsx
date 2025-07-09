@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,9 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html className="bg-zinc-950" lang="en">
+        <Toaster position="top-center" />
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col justify-between min-h-screen`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col justify-between min-h-screen bg-zinc-950`}
         >
           <Navbar />
           <div className="fixed inset-0 -z-1">
@@ -37,7 +39,7 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-[linear-gradient(var(--cyber-grid-color)_1px,transparent_1px),linear-gradient(90deg,var(--cyber-grid-color)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
           </div>
 
-          <main className="pt-24 flex-grow">{children}</main>
+          <main className="pt-24 flex-grow bg-zinc-950">{children}</main>
           <Footer />
         </body>
       </html>

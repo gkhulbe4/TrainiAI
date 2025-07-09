@@ -4,50 +4,69 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="border-t border-border bg-background/80 backdrop-blur-sm">
-      {/* Top border glow */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+    <footer className="border-t border-purple-800/60 bg-zinc-900/70 backdrop-blur-lg shadow-inner shadow-purple-900/20 mt-12">
+      <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* Logo and Copyright */}
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="p-1 bg-primary/10 rounded">
-                <ZapIcon className="w-4 h-4 text-primary" />
+      <div className="container mx-auto px-4 py-8 sm:py-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col items-center md:items-start gap-3">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="p-2 bg-blue-700/20 rounded-lg shadow-inner shadow-blue-800/30">
+                <ZapIcon className="w-5 h-5 text-blue-400" />
               </div>
-              <span className="text-xl font-bold font-mono">TrainiAI</span>
+              <span className="text-2xl font-extrabold font-mono text-gray-50 tracking-wide">
+                TrainiAI
+              </span>
             </Link>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-400">
               © {new Date().getFullYear()} TrainiAI - All rights reserved
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-2 text-sm">
-            <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-3 text-base text-center md:text-left">
+            <Link
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+            >
               About
-            </div>
-            <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+            >
               Terms
-            </div>
-            <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+            >
               Privacy
-            </div>
-            <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+            >
               Contact
-            </div>
-            <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+            >
               Blog
-            </div>
-            <div className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+            </Link>
+            <Link
+              href="#"
+              className="text-gray-400 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+            >
               Help
-            </div>
+            </Link>
           </div>
 
-          {/* Status */}
-          <div className="flex items-center gap-2 px-3 py-2 border border-border rounded-md bg-background/50">
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
-            <span className="text-xs font-mono">SYSTEM OPERATIONAL</span>
+          <div className="flex items-center gap-3 px-4 py-2 border border-green-600/50 rounded-lg bg-zinc-800/70 shadow-md">
+            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+            <span className="text-xs font-mono text-green-300 uppercase tracking-wider">
+              System Operational
+            </span>
           </div>
         </div>
       </div>

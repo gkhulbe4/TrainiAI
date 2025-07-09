@@ -3,33 +3,30 @@ import { Card } from "@/components/ui/card";
 import React from "react";
 
 function UserCard({ user }: any) {
-  //   console.log(user);
   return (
-    <Card
-      className={`bg-card/90 backdrop-blur-sm border overflow-hidden relative`}
-    >
+    <Card className="bg-card/90 backdrop-blur-md border border-blue-700/40 shadow-md overflow-hidden relative">
       <div className="aspect-video flex flex-col items-center justify-center p-6 relative">
-        {/* User Image */}
+        {/* Glow animation */}
+        <div className="absolute -z-10 size-40 rounded-full bg-purple-700/10 blur-2xl" />
+
+        {/* Avatar */}
         <div className="relative size-32 mb-4">
+          <div className="absolute inset-0 bg-primary/10 rounded-full blur-lg animate-pulse" />
           <img
             src={user?.imageUrl}
             alt="User"
-            // ADD THIS "size-full" class to make it rounded on all images
-            className="size-full object-cover rounded-full"
+            className="size-full object-cover rounded-full border-2 border-primary shadow-inner"
           />
         </div>
 
-        <h2 className="text-xl font-bold text-foreground">You</h2>
+        <h2 className="text-xl font-bold text-blue-800">You</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          {user ? user.firstName : "Guest"}
+          {user?.firstName || "Guest"}
         </p>
 
-        {/* User Ready Text */}
-        <div
-          className={`mt-4 flex items-center gap-2 px-3 py-1 rounded-full bg-card border`}
-        >
-          <div className={`w-2 h-2 rounded-full bg-muted`} />
-          <span className="text-xs text-muted-foreground">Ready</span>
+        <div className="mt-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border border-border text-sm font-mono text-muted-foreground">
+          <div className="w-2 h-2 rounded-full bg-muted" />
+          <span>Ready</span>
         </div>
       </div>
     </Card>

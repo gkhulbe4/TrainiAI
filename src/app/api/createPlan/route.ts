@@ -15,7 +15,8 @@ export async function POST(req: Request) {
     console.log("Call ID: ", callId);
 
     const callData = await vapi_server.calls.get(callId);
-    const userData: any = callData?.analysis?.structuredData;
+    console.log(callData.analysis);
+    const userData: any = callData.analysis?.structuredData;
     console.log("User Data: ", userData);
     const parsed = await getPlanFromGemini(userData);
     await insertUserData(parsed, userData, userId);
@@ -33,6 +34,22 @@ export async function POST(req: Request) {
     );
   }
 }
+
+// async function waitForAnalysis(
+//   callId: string,
+//   maxAttempts = 10,
+//   interval = 2000
+// ) {
+//   for (let i = 0; i < maxAttempts; i++) {
+//     const callData = await vapi_server.calls.get(callId);
+//     if (callData?.analysis?.structuredData) {
+//       return callData.analysis.structuredData;
+//     }
+//     console.log(`Waiting for analysis... attempt ${i + 1}`);
+//     await new Promise((res) => setTimeout(res, interval));
+//   }
+//   throw new Error("Timeout: Vapi analysis not available after retries");
+// }
 
 // CORS Preflight handler
 // export async function OPTIONS() {
