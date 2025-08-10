@@ -4,6 +4,10 @@
 
 ---
 
+## Project video :- https://www.linkedin.com/posts/garvit-khulbe-60b671245_ai-voicetech-fitnessapp-activity-7348827612523175936-5pg7?utm_source=share&utm_medium=member_desktop&rcm=ACoAADzJ2SsBEAPCw6krgQ3VzdT0AeD-T8fDCVE
+
+---
+
 ## 🌟 What It Does
 
 - 🎙️ Natural voice-based onboarding using **VAPI**
