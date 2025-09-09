@@ -4,7 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import WorkoutPlan from "@/app/_components/WorkoutPlan";
 import DietPlan from "@/app/_components/DietPlan";
 
-async function page({ params }: { params: { planId: string } }) {
+type Params = Promise<{ planId: string }>;
+
+async function page({ params }: { params: Params }) {
   const { planId } = await params;
 
   const workoutPlan = await prisma.workoutPlan.findMany({
