@@ -1,13 +1,10 @@
 "use client";
-
 import ProgressDialog from "@/app/_components/ProgressDialog";
 import UserCard from "@/app/_components/UserCard";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { vapi } from "@/lib/vapi";
 import { useUser } from "@clerk/nextjs";
-import { Call } from "@vapi-ai/web/dist/api";
 import Error from "next/error";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
